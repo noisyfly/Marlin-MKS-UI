@@ -1636,11 +1636,11 @@
   // LCD's font must contain the characters. Check your selected LCD language.
   //#define UTF_FILENAME_SUPPORT
 
-  //#define LONG_FILENAME_HOST_SUPPORT    // Get the long filename of a file/folder with 'M33 <dosname>' and list long filenames with 'M20 L'
-  //#define LONG_FILENAME_WRITE_SUPPORT   // Create / delete files with long filenames via M28, M30, and Binary Transfer Protocol
+  #define LONG_FILENAME_HOST_SUPPORT    // Get the long filename of a file/folder with 'M33 <dosname>' and list long filenames with 'M20 L'
+  #define LONG_FILENAME_WRITE_SUPPORT   // Create / delete files with long filenames via M28, M30, and Binary Transfer Protocol
   //#define M20_TIMESTAMP_SUPPORT         // Include timestamps by adding the 'T' flag to M20 commands
 
-  //#define SCROLL_LONG_FILENAMES         // Scroll long filenames in the SD card menu
+  #define SCROLL_LONG_FILENAMES         // Scroll long filenames in the SD card menu
 
   //#define SD_ABORT_NO_COOLDOWN          // Leave the heaters on after Stop Print (not recommended!)
 
@@ -1672,7 +1672,7 @@
    *
    * [1] On AVR an interrupt-capable pin is best for UHS3 compatibility.
    */
-  //#define USB_FLASH_DRIVE_SUPPORT
+  #define USB_FLASH_DRIVE_SUPPORT
   #if ENABLED(USB_FLASH_DRIVE_SUPPORT)
     /**
      * USB Host Shield Library
@@ -1692,7 +1692,7 @@
     /**
      * Native USB Host supported by some boards (USB OTG)
      */
-    //#define USE_OTG_USB_HOST
+    #define USE_OTG_USB_HOST
 
     #if DISABLED(USE_OTG_USB_HOST)
       #define USB_CS_PIN    SDSS
@@ -1750,7 +1750,7 @@
    * Multiple volume support - EXPERIMENTAL.
    * Adds 'M21 Pm' / 'M21 S' / 'M21 U' to mount SD Card / USB Drive.
    */
-  //#define MULTI_VOLUME
+  #define MULTI_VOLUME
   #if ENABLED(MULTI_VOLUME)
     #define VOLUME_SD_ONBOARD
     #define VOLUME_USB_FLASH_DRIVE
@@ -2179,6 +2179,11 @@
   //#define PROBING_MARGIN_RIGHT PROBING_MARGIN
   //#define PROBING_MARGIN_FRONT PROBING_MARGIN
   //#define PROBING_MARGIN_BACK PROBING_MARGIN
+
+  #define PROBING_MARGIN_LEFT 15
+  #define PROBING_MARGIN_RIGHT X_BED_SIZE - 260
+  #define PROBING_MARGIN_FRONT 15
+  #define PROBING_MARGIN_BACK Y_BED_SIZE - 180
 #endif
 
 #if EITHER(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL)

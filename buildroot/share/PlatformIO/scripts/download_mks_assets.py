@@ -9,6 +9,7 @@ if pioutil.is_pio_build():
     from pathlib import Path
 
     url = "https://github.com/makerbase-mks/Mks-Robin-Nano-Marlin2.0-Firmware/archive/0263cdaccf.zip"
+#    url = "https://github.com/makerbase-mks/Mks-Robin-Nano-Marlin2.0-Firmware/archive/refs/heads/master.zip"
     deps_path = Path(env.Dictionary("PROJECT_LIBDEPS_DIR"))
     zip_path = deps_path / "mks-assets.zip"
     assets_path = Path(env.Dictionary("PROJECT_BUILD_DIR"), env.Dictionary("PIOENV"), "assets")

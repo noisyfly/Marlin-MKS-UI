@@ -134,18 +134,31 @@ void unicode_2_utf8(char *des, uint16_t *source, uint8_t Len) {
         strcpy(list_file.file_name[valid_name_cnt], list_file.curDirPath);
         strcat_P(list_file.file_name[valid_name_cnt], PSTR("/"));
         strcat(list_file.file_name[valid_name_cnt], card.filename);
-        // strcpy(list_file.long_name[valid_name_cnt], card.longest_filename());
 
-        ZERO(list_file.long_name[valid_name_cnt]);
-        if (lv_longFilename[0] == 0)
-				  strncpy(list_file.long_name[valid_name_cnt], card.filename, strlen(card.filename));
-				else {
-					//chinese is 3 byte, ascii is 1 byte
-					//max chinese: (sizeof(list_file.long_name[valid_name_cnt]) - strlen(".gcode") - 1) / 3 = (53 - 6 - 1) / 3 = 15
-					//max ascii: (sizeof(list_file.long_name[valid_name_cnt]) - strlen(".gcode") - 1) = 53 -6 - 1 = 46
-					unicode_2_utf8(list_file.long_name[valid_name_cnt], lv_longFilename, FILENAME_LENGTH * MAX_VFAT_ENTRIES);
-					list_file.long_name[valid_name_cnt][SHORT_NAME_LEN * 4] = '\0';
-				}
+        //*****
+        // Difference START - but maybe after correction oryginal code from MKS will be better
+        //*****
+
+        // source from Marlin repository
+        strcpy(list_file.long_name[valid_name_cnt], card.longest_filename());
+
+        // source from MKS repository  ZERO() is suspicious 
+        // // strcpy(list_file.long_name[valid_name_cnt], card.longest_filename());
+
+        // ZERO(list_file.long_name[valid_name_cnt]);
+        // if (lv_longFilename[0] == 0)
+				//   strncpy(list_file.long_name[valid_name_cnt], card.filename, strlen(card.filename));
+				// else {
+				// 	//chinese is 3 byte, ascii is 1 byte
+				// 	//max chinese: (sizeof(list_file.long_name[valid_name_cnt]) - strlen(".gcode") - 1) / 3 = (53 - 6 - 1) / 3 = 15
+				// 	//max ascii: (sizeof(list_file.long_name[valid_name_cnt]) - strlen(".gcode") - 1) = 53 -6 - 1 = 46
+				// 	unicode_2_utf8(list_file.long_name[valid_name_cnt], lv_longFilename, FILENAME_LENGTH * MAX_VFAT_ENTRIES);
+				// 	list_file.long_name[valid_name_cnt][SHORT_NAME_LEN * 4] = '\0';
+				// }
+
+        //*****
+        // Difference END - but maybe after correction oryginal code from MKS will be better
+        //*****
 
         valid_name_cnt++;
         if (valid_name_cnt == 1)

@@ -835,7 +835,7 @@ void disp_assets_update_progress(const char *msg) {
   const char *MKSTestPath = "MKS_TEST";
 
   void mks_test_get() {
-    SdFile dir, root = card.getroot();
+    MediaFile dir, root = card.getroot();
     if (dir.open(&root, MKSTestPath, O_RDONLY))
       mks_test_flag = 0x1E;
   }

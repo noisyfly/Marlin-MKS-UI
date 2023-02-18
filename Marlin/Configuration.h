@@ -390,7 +390,7 @@
 // Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).
 // The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
 // For the other hotends it is their distance from the extruder 0 hotend.
-#define HOTEND_OFFSET_X { 0.0, -18.00 } // (mm) relative X-offset for each nozzle
+#define HOTEND_OFFSET_X { 0.0, 18.00 } // (mm) relative X-offset for each nozzle
 #define HOTEND_OFFSET_Y { 0.0, 0.00 }  // (mm) relative Y-offset for each nozzle
 #define HOTEND_OFFSET_Z { 0.0, 0.00 }  // (mm) relative Z-offset for each nozzle
 
@@ -1754,12 +1754,12 @@
 // @section geometry
 
 // The size of the printable area
-#define X_BED_SIZE 264
-#define Y_BED_SIZE 220
+#define X_BED_SIZE 262
+#define Y_BED_SIZE 210
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS -18
-#define Y_MIN_POS 0
+#define Y_MIN_POS -7
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE

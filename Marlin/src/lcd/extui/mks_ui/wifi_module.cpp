@@ -811,7 +811,7 @@ static int cut_msg_head(uint8_t *msg, uint16_t msgLen, uint16_t cutLen) {
   return msgLen - cutLen;
 }
 
-uint8_t Explore_Disk(char *path , uint8_t recu_level) {
+uint8_t Explore_Disk(char *path , uint8_t recu_level) {  //TODO Modify for long names GCH
   char tmp[200];
   char Fstream[200];
 
@@ -822,7 +822,7 @@ uint8_t Explore_Disk(char *path , uint8_t recu_level) {
   for (uint8_t i = 0; i < fileCnt; i++) {
     card.getfilename_sorted(SD_ORDER(i, fileCnt));
     ZERO(tmp);
-    strcpy(tmp, card.filename);
+    strcpy(tmp, card.filename);  //?? card.longFilename
 
     ZERO(Fstream);
     strcpy(Fstream, tmp);
@@ -1520,7 +1520,7 @@ static void file_first_msg_handle(uint8_t * msg, uint16_t msgLen) {
 
     char dosName[FILENAME_LENGTH];
 
-    if (!longName2DosName((const char *)file_writer.saveFileName, dosName)) {
+    if (!longName2DosName((const char *)file_writer.saveFileName, dosName)) {   //TODO GCH Name is shorten here
       clear_cur_ui();
       upload_result = 2;
       wifiTransError.flag = 1;

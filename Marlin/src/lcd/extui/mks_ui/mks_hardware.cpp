@@ -822,12 +822,17 @@ void disp_assets_update() {
   disp_string(100, 140, "Assets Updating...", 0xFFFF, 0x0000);
 }
 
-void disp_assets_update_progress(const char *msg) {
-  char buf[30];
-  memset(buf, ' ', COUNT(buf));
-  strncpy(buf, msg, strlen(msg));
-  buf[COUNT(buf) - 1] = '\0';
-  disp_string(100, 165, buf, 0xFFFF, 0x0000);
+void disp_assets_update_progress(FSTR_P const fmsg) {
+  #ifdef __AVR__
+    static constexpr int buflen = 30;
+    char buf[buflen];
+    memset(buf, ' ', buflen);
+    strncpy_P(buf, FTOP(fmsg), buflen - 1);
+    buf[buflen - 1] = '\0';
+    disp_string(100, 165, buf, 0xFFFF, 0x0000);
+  #else
+    disp_string(100, 165, FTOP(fmsg), 0xFFFF, 0x0000);
+  #endif
 }
 
 #if BOTH(MKS_TEST, SDSUPPORT)

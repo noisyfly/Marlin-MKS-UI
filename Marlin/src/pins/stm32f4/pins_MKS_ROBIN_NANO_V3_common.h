@@ -173,7 +173,10 @@
 #if ENABLED(MKS_PWC)
   #if ENABLED(TFT_LVGL_UI)
     #if ENABLED(PSU_CONTROL)
-      #error "PSU_CONTROL is incompatible with MKS_PWC plus TFT_LVGL_UI."
+//      #error "PSU_CONTROL is incompatible with MKS_PWC plus TFT_LVGL_UI."
+//      #warning "PSU_CONTROL is incompatible with MKS_PWC plus TFT_LVGL_UI. Undefine PSU_CONTROL"
+//TODO: rewrite MKS_UI (TFT_LVGL_UI) to use standard command from PSU CONTROL MODULE
+      #undef PSU_CONTROL
     #endif
     #undef MKS_PWC
     #define SUICIDE_PIN                     PB2
